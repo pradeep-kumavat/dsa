@@ -1,5 +1,6 @@
 #include<iostream>
 #include<queue>
+#include<climits>
 using namespace std;
 
 class Node{
@@ -65,6 +66,67 @@ void takeInput(Node* &root){
     }
 }
 
+pair<int,int> getMinMax(Node* root){
+    Node* temp = root;
+    if(temp == NULL){
+        return {-1, -1};
+    }
+    
+    while(temp->left != NULL){
+        temp = temp->left;
+    }
+    int minVal = temp->data;
+    temp = root;
+
+    while(temp->right != NULL){
+        temp = temp->right;
+    }
+    int maxVal = temp->data;
+
+    return {minVal, maxVal};
+}
+
+// delete a node from bst
+Node* deleteNode(Node* root, int key){
+    if(root == NULL){
+        return NULL;
+    }
+
+    if(root->data == key){
+        if(root->left == NULL && root->right == NULL){
+            delete root;
+            return NULL;
+        }
+        else if(root->right == NULL){
+            Node* temp = root->left;
+            delete root;
+            return temp;
+        }
+        else if(root->left == NULL){
+            Node* temp = root->right;
+            delete root;
+            return temp;
+        }
+        else{
+            Node* temp = root->right;
+            while(temp->left != NULL){
+                temp = temp->left;
+            }
+            root->data = temp->data;
+            root->right = deleteNode(root->right, temp->data);
+            return root;
+        }
+    }
+    else if(root->data > key){
+        root->left = deleteNode(root->left, key);
+        return root;
+    }
+    else{
+        root->right = deleteNode(root->right, key);
+        return root;
+    }
+}
+
 
 int main(){
 
@@ -77,6 +139,15 @@ int main(){
     levelOrderTraversal(root);
 
     //10 8 21 7 27 5 4 3 -1
+
+    pair<int,int> minMax = getMinMax(root);
+    cout<<"Min value in BST: "<<minMax.first<<endl;
+    cout<<"Max value in BST: "<<minMax.second<<endl;
+    
+    int key = 3;
+    deleteNode(root, key);
+    cout<<"Level Order Traversal of bst after deleting "<<key<<" : "<<endl;
+    levelOrderTraversal(root);
 
 
     return 0;
