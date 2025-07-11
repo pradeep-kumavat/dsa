@@ -132,7 +132,7 @@ int main(){
     // postOrderTraversal(root);
     // cout<<endl;
 
-    buildFromLevelOrder(root);
+    buildFromLevelOrder(root);       
     cout<<"printing level order traversal: "<<endl;
     levelOrderTraversalByqueue(root);
 
