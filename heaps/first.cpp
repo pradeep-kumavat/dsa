@@ -59,15 +59,15 @@ class heap{
         }
     }
 
-    void heapify(int arr[],int n,int i){
+    void heapify(int arr[],int n,int i){ //ye max heap bana rha hai
         int largest = i;
         int left = 2*i;
         int right = 2*i+1;
 
-        if(left<=n && arr[left]>arr[largest]){
+        if(left<=n && arr[left]>arr[largest]){ //min heap ke liye < hoga
             largest = left;
         }
-        if(right<=n && arr[right]>arr[largest]){
+        if(right<=n && arr[right]>arr[largest]){ //min heap ke liye < hoga
             largest = right;
         }
 
@@ -139,10 +139,6 @@ int main() {
     minheap.pop();
     cout<<"element at top is "<<minheap.top()<<endl;
 
-
-
-
-   
 
     return 0;
 }
