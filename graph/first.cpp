@@ -8,8 +8,10 @@ class graph{
     unordered_map<int, list<int>> adj;
 
     void addEdge(int u, int v, bool direction){
-        //direction = 0 means undirectional
-        //direction = 1 means directional
+        //direction = 0 means undirected 
+        //direction = 1 means directed 
+        //if the edge is directed, we only add the edge from u to v
+        //if the edge is undirected, we add the edge from u to v and v
 
         //create an edge from u to v
         adj[u].push_back(v);
