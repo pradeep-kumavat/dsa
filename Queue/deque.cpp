@@ -21,20 +21,20 @@ public:
     {
         //check full or not
         if( isFull() ) {
-            return false;
+            return false;  //no space
         }
         else if(isEmpty()) {
-            front  = rear = 0;
+            front  = rear = 0;   // first element
         }
         else if(front == 0 && rear != size-1) {
-            front = size-1;
+            front = size-1;     // wrap around
         } 
         else
         {
-            front--;
+            front--;              //normal case
         }
         arr[front] = x;
-        return true;
+        return true;              //store element
     }
 
     // Pushes 'X' in the back of the deque. Returns true if it gets pushed into the deque, and false otherwise.
